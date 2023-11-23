@@ -17,36 +17,98 @@
   <div class="row">
     <div class="card">
       <div class="card-body">
+        <h5>Registrar Personas</h5>
+        <form [formGroup]="personaForm" (ngSubmit)="registrarPersona()">
+          <div class="form-group">
+            <label for="InputAPaterno" class="form-label"
+              >Apellido Paterno:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Consigne el Apellido Paterno"
+              formControlName="apellido_paterno"
+            />
+            <label for="InputAMaterno" class="form-label"
+              >Apellido Materno:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Consigne el Apellido Materno"
+              formControlName="apellido_materno"
+            />
+            <label for="InputNombres" class="form-label">Nombres:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Consigne Nombres"
+              formControlName="nombres"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button class="btn btn-danger">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">N°</th>
+              <th scope="col">Apellido Paterno</th>
+              <th scope="col">Apellido Materno</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Fecha Nac.</th>
+              <th scope="col">Tipo Docu.</th>
+              <th scope="col">N° Docu.</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Ubigeo</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
+            <tr
+              *ngFor="
+                let persona of personaArray
+                  | paginate : { itemsPerPage: 10, currentPage: page };
+                let i = index
+              "
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ persona.apellido_paterno }}</td>
+              <td>{{ persona.apellido_materno }}</td>
+              <td>{{ persona.nombres }}</td>
+              <td>{{ persona.fecha_nacimiento | date : "dd-MM-yyy" }}</td>
+              <td>{{ persona.id_tipo_documento }}</td>
+              <td>{{ persona.ndocumento }}</td>
+              <td>{{ persona.direccion }}</td>
+              <td>{{ persona.idubigeo }}</td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  (click)="editarPersona(persona)"
+                >
+                  Editar
+                </button>
+                <button
+                  class="btn btn-danger"
+                  (click)="eliminarPersona(persona)"
+                >
+                  Eliminar
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <pagination-controls
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      >
+      </pagination-controls>
     </div>
   </div>
 </div>

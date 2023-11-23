@@ -14,4 +14,12 @@ export class PersonaService {
   getPersonas(): Observable<Persona[]> {
     return this.http.get<Persona[]>(`${this.BASE_URL}/listar`);
   }
+
+  registrarPersona(form: any) {
+    return this.http.post(`${this.BASE_URL}/agregar`, form);
+  }
+
+  eliminarPersona(persona: Persona) {
+    return this.http.delete(`${this.BASE_URL}/eliminar`, { body: persona });
+  }
 }
