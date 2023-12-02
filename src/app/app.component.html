@@ -18,7 +18,7 @@
     <div class="card">
       <div class="card-body">
         <h5>Registrar Personas</h5>
-        <form [formGroup]="personaForm" (ngSubmit)="registrarPersona()">
+        <form [formGroup]="personaForm">
           <div class="form-group">
             <label for="InputAPaterno" class="form-label"
               >Apellido Paterno:</label
@@ -46,8 +46,10 @@
               formControlName="nombres"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          <button class="btn btn-danger">Cancelar</button>
+          <button class="btn btn-primary" (click)="registrarPersona()">
+            Guardar
+          </button>
+          <button class="btn btn-danger" (click)="Cancelar()">Cancelar</button>
         </form>
       </div>
     </div>
