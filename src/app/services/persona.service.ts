@@ -7,7 +7,8 @@ import { Persona } from '../model/persona';
   providedIn: 'root',
 })
 export class PersonaService {
-  readonly BASE_URL: string = 'http://localhost:8082/api/v1/personas';
+  readonly BASE_URL: string =
+    'https://sigcon-backend.onrender.com/api/v1/personas'; //'http://localhost:8082/api/v1/personas';
 
   constructor(private http: HttpClient) {}
 
