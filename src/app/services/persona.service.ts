@@ -8,7 +8,7 @@ import { Persona } from '../model/persona';
 })
 export class PersonaService {
   readonly BASE_URL: string =
-    'https://sigcon-backend.onrender.com/api/v1/personas'; //'http://localhost:8082/api/v1/personas';
+    'https://sigcon-backend.onrender.com/api/v1/personas';
 
   constructor(private http: HttpClient) {}
 
@@ -24,3 +24,5 @@ export class PersonaService {
     return this.http.delete(`${this.BASE_URL}/eliminar`, { body: persona });
   }
 }
+
+//'http://localhost:8082/api/v1/personas';
